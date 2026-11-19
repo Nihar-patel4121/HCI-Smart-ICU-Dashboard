@@ -39,6 +39,8 @@ The **Smart ICU Alarm Fatigue Management Dashboard** is a bedside and central te
 ```
 c:\Users\HP\Desktop\HCI_Project\
 │
+├── Doctor_Feedback.txt                # Clinical Domain Expert Review & Suggestions
+├── index.html                         # Root Standalone Dashboard (1-Click GitHub Pages)
 ├── README.md                          # Master Project Documentation & Quickstart
 │
 ├── docs/                              # Comprehensive Academic Reports
@@ -57,31 +59,27 @@ c:\Users\HP\Desktop\HCI_Project\
 ├── prototype/                         # Interactive Working Proof of Concept
 │   ├── index.html                     # Semantic single-page web application
 │   ├── css/
-│   │   ├── variables.css              # Design tokens, medical palette & elevations
-│   │   ├── main.css                   # Layout, sticky header, toasts, & responsive grid
-│   │   └── components.css             # Bedside cards, context drawer, & history table
+│   │   └── style.css                  # Comprehensive medical design system
 │   └── js/
-│       ├── app.js                     # Main coordinator, router, & keyboard listeners
-│       ├── patients.js                # Patient data store & vital card renderer
-│       ├── alarms.js                  # Prioritization, tri-state lifecycle, & audit log
-│       └── simulation.js              # Deterministic scenario engine & audio synthesizer
+│       └── app.js                     # State management, smart triage & simulation
 │
 ├── data/                              # Simulated Clinical Telemetry Datasets
 │   ├── patients.json                  # 6 Monitored beds with baseline vitals
 │   └── alarms.json                    # Deterministic alarm events & context
 │
 ├── paper-prototype/                   # Physical Prototype Artifacts
-│   ├── screen-wireframes/             # High-fidelity SVG wireframes (Screens 1 to 4)
-│   │   ├── screen1_dashboard.svg
-│   │   ├── screen2_alarm_details.svg
-│   │   ├── screen3_patient_focus.svg
-│   │   └── screen4_alarm_history.svg
+│   ├── screen-wireframes/             # Hand-drawn style SVG wireframes (Screens 1 to 4)
+│   │   ├── screen1_dashboard.svg      # Central dashboard (3-bed representation)
+│   │   ├── screen2_alarm_details.svg  # Bedside inspection modal popup
+│   │   ├── screen3_patient_focus.svg  # Acknowledged care & quiet mode
+│   │   └── screen4_alarm_history.svg  # Shift alarm history table
 │   ├── storyboard/
 │   │   └── storyboard_narrative.md    # Storyboard scene breakdown
 │   └── printable-screens/
-│       └── printable_paper_prototype.html # A4 printable cut-and-paste sheets
+│       └── printable_paper_prototype.html # A4 printable hand-drawn sketch sheets
 │
 ├── evaluation/                        # Evaluation Forms & Testing Sheets
+│   ├── expert-physician-feedback.md   # Doctor review transcript & design response
 │   ├── usability-test-template.md     # Standardized participant observation sheet
 │   ├── cognitive-walkthrough.md       # Wharton/Norman walkthrough recording sheet
 │   ├── heuristic-evaluation.md        # Nielsen heuristic scoring rubric
@@ -190,8 +188,13 @@ To prepare Deliverable 1 for the Week 7 showcase:
 
 ---
 
-## 7. Usability Evaluation Key Results
+## 7. Usability Evaluation & Clinical Expert Feedback
 
+- **Clinical Doctor Feedback**: Evaluated by an ICU Physician (see [`Doctor_Feedback.txt`](file:///c:/Users/HP/Desktop/HCI_Project/Doctor_Feedback.txt) and [`evaluation/expert-physician-feedback.md`](file:///c:/Users/HP/Desktop/HCI_Project/evaluation/expert-physician-feedback.md)).
+  - Confirmed the central dashboard effectively aggregates multiple patient readings in one place.
+  - Commended the color-coded prioritization for rapidly identifying which patient needs immediate attention.
+  - Recommended patient-tailored target thresholds and dual/MAP blood pressure visibility (both addressed in prototype).
+  - Validated the vital necessity of the Shift Alarm History Log for auditing clinical condition changes.
 - **Usability Testing**: Evaluated with 3 independent participants across 5 standardized clinical tasks.
   - Mean Time-to-Triage: **1.93 seconds** (target was < 5.0s).
   - Context Comprehension: **4.60 seconds** (target was < 10.0s).
@@ -201,8 +204,25 @@ To prepare Deliverable 1 for the Week 7 showcase:
 
 ---
 
-## 8. Academic Authorship & Submission Verification
+## 8. GitHub Hosting & Deployment Guide
+
+This project includes a root `index.html` allowing 1-click zero-configuration live deployment on **GitHub Pages**:
+1. Push this repository to GitHub:
+   ```bash
+   git remote add origin https://github.com/<your-username>/<repo-name>.git
+   git push -u origin main
+   ```
+2. In your GitHub repository:
+   - Navigate to **Settings ➔ Pages**.
+   - Under **Build and deployment ➔ Source**, select **Deploy from a branch**.
+   - Set **Branch** to `main` and folder to `/ (root)`.
+   - Click **Save**.
+3. Your interactive dashboard is live at `https://<your-username>.github.io/<repo-name>/` to share with evaluators and course instructors!
+
+---
+
+## 9. Academic Authorship & Submission Verification
 - **Course**: Human-Computer Interaction (HCI)
 - **Project Title**: Smart ICU Alarm Fatigue Management Dashboard
-- **Deliverables**: Paper/Cardboard Prototype, Working Proof of Concept, Usability Evaluation Portfolio, and Final Presentation Slide Deck.
+- **Deliverables**: Paper Prototype Kit, Working Proof of Concept Web App, Usability Evaluation Portfolio, Physician Review, and Final Presentation Slide Deck.
 

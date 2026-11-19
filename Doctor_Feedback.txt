@@ -1,0 +1,5 @@
+I checked the Smart ICU Alarm Dashboard. The idea is good and can be useful for keeping track of multiple patients in the ICU. It is helpful to see all the patient readings in one place. The different alerts also make it easier to identify which patient needs attention.
+
+Some changes can make it better. The normal limits should be adjusted according to each patient's condition. Blood pressure should show both upper and lower readings. It would also be good to have a record of previous alerts so that changes in the patient's condition can be checked.
+
+Overall, it is a good effort and can be useful for hospital staff. Some more improvements and testing will be needed before using it in an actual ICU.

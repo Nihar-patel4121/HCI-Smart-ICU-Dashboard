@@ -2,121 +2,55 @@
   {
     "id": "ALM-2026-001",
     "patientId": "P-101",
-    "bed": "Bed 01",
+    "bed": "Bed 1",
     "priority": "Critical",
-    "category": "Hemodynamic / Oxygenation",
-    "title": "Severe Hypoxemia with Tachycardia",
-    "description": "SpO2 dropped below 89% for >45 seconds accompanied by acute heart rate elevation (128 bpm).",
-    "triggerValue": "SpO2: 88% | HR: 128 bpm",
-    "normalRange": "SpO2 > 92% | HR: 60-100 bpm",
-    "timestamp": "2026-11-04 22:31:14",
+    "category": "Oxygen & Heart",
+    "title": "Critical: Oxygen Level Dangerously Low (SpO2 88%)",
+    "description": "Patient oxygen dropped to 88% (safe is above 90%). Heart rate spiked to 125 bpm.",
+    "triggerValue": "SpO2: 88% | HR: 125 bpm | BP: 70 mmHg",
+    "normalRange": "SpO2 > 92% | HR: 60-100 bpm | BP: 70-100 mmHg",
+    "timestamp": "11:42:10",
     "status": "Active",
     "context": {
-      "suspectedRootCause": "Probable airway compromise or secretion accumulation post-extubation. Pleth wave shows good pulsatile amplitude (genuine physiological crisis, not artifact).",
-      "recommendedAction": "1. Immediate bedside assessment. 2. Verify oxygen delivery circuit and suction. 3. Prepare bag-valve-mask if desaturation persists.",
-      "multiParameterCorrelation": "Concomitant tachycardia (128 bpm) confirms sympathetic response to hypoxemia. High confidence non-artifact.",
-      "confidenceScore": "96% High Clinical Relevance"
-    },
-    "history": [
-      { "action": "Triggered", "by": "Bedside Telemetry Node B01", "time": "22:31:14", "note": "Threshold violation SpO2 < 90%" }
-    ]
+      "suspectedRootCause": "Probable airway compromise or mask slipping during bed movement.",
+      "recommendedAction": "1. Check patient breathing & alertness immediately. 2. Verify oxygen mask fit. 3. Adjust sitting posture upright.",
+      "confidenceScore": "96% True Clinical Event"
+    }
   },
   {
     "id": "ALM-2026-002",
     "patientId": "P-102",
-    "bed": "Bed 02",
+    "bed": "Bed 2",
     "priority": "Warning",
     "category": "Respiratory",
-    "title": "Tachypnea with Borderline Desaturation",
-    "description": "Respiratory rate elevated to 26 bpm with SpO2 drifting between 90-91%.",
-    "triggerValue": "RR: 26 bpm | SpO2: 91%",
-    "normalRange": "RR: 12-20 bpm | SpO2 > 92%",
-    "timestamp": "2026-11-04 22:28:40",
+    "title": "Warning: Breathing Faster Than Normal (26/min)",
+    "description": "Patient is taking 26 breaths/min (normal is 12-20). Oxygen is slightly low at 91%.",
+    "triggerValue": "RR: 26 /min | SpO2: 91% | BP: 89 mmHg",
+    "normalRange": "RR: 12-20 /min | SpO2 > 90%",
+    "timestamp": "11:15:04",
     "status": "Active",
     "context": {
-      "suspectedRootCause": "Early respiratory muscle fatigue or patient-ventilator dyssynchrony.",
-      "recommendedAction": "Check ventilator tubing condensation; assess breathing work and consider bronchodilator treatment.",
-      "multiParameterCorrelation": "Heart rate stable at 92 bpm; no acute bradycardia. Moderate urgency.",
-      "confidenceScore": "82% Actionable Warning"
-    },
-    "history": [
-      { "action": "Triggered", "by": "Dräger Evita V500 Stream", "time": "22:28:40", "note": "Sustained RR > 24 bpm for 3 minutes" }
-    ]
+      "suspectedRootCause": "Early shortness of breath or nebulizer/steam dose due.",
+      "recommendedAction": "1. Check if patient feels breathless. 2. Check if breathing medicine is due. 3. Re-check oxygen in 5 minutes.",
+      "confidenceScore": "85% Clinical Warning"
+    }
   },
   {
     "id": "ALM-2026-003",
     "patientId": "P-104",
-    "bed": "Bed 04",
-    "priority": "Advisory",
-    "category": "Technical / Sensor Artifact",
-    "title": "ECG Lead V4 Signal Degradation",
-    "description": "High electrode impedance detected on precordial Lead V4. Baseline wander detected without arrhythmia.",
-    "triggerValue": "Impedance > 12 kΩ",
-    "normalRange": "< 5 kΩ",
-    "timestamp": "2026-11-04 22:25:05",
+    "bed": "Bed 4",
+    "priority": "Low",
+    "category": "Sensor Equipment",
+    "title": "Sensor Alert: Heart Monitor Sticker Loose",
+    "description": "Chest sticker came slightly loose when patient moved in bed. Heart vitals are actually normal (64 bpm).",
+    "triggerValue": "Lead V4 Impedance High",
+    "normalRange": "Electrode impedance < 3 kOhm",
+    "timestamp": "10:50:22",
     "status": "Active",
     "context": {
-      "suspectedRootCause": "Electrode gel dry-out or partial detachment caused by patient repositioning in bed.",
-      "recommendedAction": "Re-prep skin and replace V4 disposable electrode during next routine nursing round. Audio alarm suppressed to reduce fatigue.",
-      "multiParameterCorrelation": "Heart rate derived from arterial line and pulse oximeter remains rock solid at 64 bpm with normal rhythm. No patient distress.",
-      "confidenceScore": "94% Non-Actionable / Sensor Maintenance Alert"
-    },
-    "history": [
-      { "action": "Triggered", "by": "Mindray BeneVision Central", "time": "22:25:05", "note": "Electrode contact impedance elevated" }
-    ]
-  },
-  {
-    "id": "ALM-2026-004",
-    "patientId": "P-103",
-    "bed": "Bed 03",
-    "priority": "Warning",
-    "category": "Hemodynamic",
-    "title": "NIBP Cuff Inflation Timeout",
-    "description": "Scheduled non-invasive blood pressure measurement timed out due to patient movement.",
-    "triggerValue": "Cuff Cycle Retry Failed",
-    "normalRange": "Completed within 45s",
-    "timestamp": "2026-11-04 22:15:30",
-    "status": "Acknowledged",
-    "acknowledgedBy": "Nurse R. Verma (RN)",
-    "acknowledgedAt": "2026-11-04 22:17:10",
-    "context": {
-      "suspectedRootCause": "Patient was drinking water when cuff inflated. Art-line continuous MAP is normal (82 mmHg).",
-      "recommendedAction": "Re-run NIBP manually when patient is resting still.",
-      "multiParameterCorrelation": "Invasive arterial line transducer reading is normal and steady.",
-      "confidenceScore": "65% Informational Alert"
-    },
-    "history": [
-      { "action": "Triggered", "by": "Phillips IntelliVue MX800", "time": "22:15:30", "note": "Cycle error code 0x14" },
-      { "action": "Acknowledged", "by": "Nurse R. Verma (RN)", "time": "22:17:10", "note": "Patient checked; art line active and normal." }
-    ]
-  },
-  {
-    "id": "ALM-2026-005",
-    "patientId": "P-105",
-    "bed": "Bed 05",
-    "priority": "Advisory",
-    "category": "Infusion",
-    "title": "Infusion Syringe Volume Near Empty (<10%)",
-    "description": "Syringe pump 02 (Furosemide infusion) has approximately 15 minutes remaining volume.",
-    "triggerValue": "Vol Remaining: 2.2 mL",
-    "normalRange": "> 5.0 mL",
-    "timestamp": "2026-11-04 22:05:12",
-    "status": "Resolved",
-    "acknowledgedBy": "Nurse P. Sharma (RN)",
-    "acknowledgedAt": "2026-11-04 22:07:00",
-    "resolvedBy": "Nurse P. Sharma (RN)",
-    "resolvedAt": "2026-11-04 22:12:45",
-    "context": {
-      "suspectedRootCause": "Scheduled infusion completion.",
-      "recommendedAction": "Prepare replacement syringe according to MAR protocol.",
-      "multiParameterCorrelation": "Patient stable.",
-      "confidenceScore": "99% Predictable Routine Alert"
-    },
-    "history": [
-      { "action": "Triggered", "by": "Alaris CC Syringe Pump", "time": "22:05:12", "note": "Near end of infusion" },
-      { "action": "Acknowledged", "by": "Nurse P. Sharma (RN)", "time": "22:07:00", "note": "Replacement syringe requested from pharmacy" },
-      { "action": "Resolved", "by": "Nurse P. Sharma (RN)", "time": "22:12:45", "note": "New syringe mounted and primed. Flow re-established." }
-    ]
+      "suspectedRootCause": "Electrode adhesive slipped off skin during patient turning.",
+      "recommendedAction": "1. Re-stick chest sensor during next routine nursing round. 2. Audio buzzer silenced so patient can sleep.",
+      "confidenceScore": "98% Technical / Non-Urgent Artifact"
+    }
   }
 ]
-
