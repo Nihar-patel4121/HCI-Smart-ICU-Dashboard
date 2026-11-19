@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart ICU Alarm Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Clean Healthcare Header with Live Station Clock -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-badge">ICU</div>
+      <div>
+        <h1>Smart ICU Alarm Dashboard</h1>
+        <p class="subtitle">Bedside Alarm Fatigue Management • Ward 4 (6 Beds)</p>
+      </div>
+    </div>
+    
+    <div class="nav-center">
+      <button class="nav-tab active" id="tab-dashboard" onclick="showTab('dashboard')">
+        <span>🏥</span> Live Dashboard
+      </button>
+      <button class="nav-tab" id="tab-history" onclick="showTab('history')">
+        <span>📋</span> Shift History Log
+      </button>
+    </div>
+
+    <div class="nav-meta">
+      <div class="shift-clock-box">
+        <span class="shift-clock" id="live-clock">12:00:00</span>
+      </div>
+      <div class="nav-user">
+        <span class="user-status-dot"></span>
+        <div class="user-info">
+          <strong>Nurse Priya</strong>
+          <span>ICU Ward 4 (On Duty)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nurse Clinical Tools & Scenario Simulation Bar -->
+  <div class="clinical-toolbar" id="clinical-toolbar">
+    <div class="toolbar-controls-row" id="sim-controls-wrapper">
+      <div class="toolbar-section left-sim">
+        <span class="toolbar-label">🏥 <strong>Clinical Simulator:</strong></span>
+        
+        <div class="control-inline">
+          <label for="sim-bed-select">Target Bed:</label>
+          <select id="sim-bed-select" class="toolbar-select">
+            <option value="1">Bed 1 (Rajesh Kumar)</option>
+            <option value="2">Bed 2 (Sunita Devi)</option>
+            <option value="3">Bed 3 (Amit Patel)</option>
+            <option value="4">Bed 4 (Meena Sharma)</option>
+            <option value="5">Bed 5 (Vikram Singh)</option>
+            <option value="6">Bed 6 (Ananya Roy)</option>
+          </select>
+        </div>
+
+        <div class="control-inline">
+          <label for="sim-event-select">Simulate Alert:</label>
+          <select id="sim-event-select" class="toolbar-select">
+            <option value="spo2_drop">🚨 Critical: Oxygen Dangerously Low (SpO2 88%)</option>
+            <option value="tachycardia">🚨 Critical: Heart Rate Dangerously High (145 bpm)</option>
+            <option value="tachypnea">⚠️ Warning: Breathing Too Fast (28 breaths/min)</option>
+            <option value="nibp_error">⚠️ Warning: Blood Pressure Cuff Moved / Retry</option>
+            <option value="ecg_loose">ℹ️ Sensor: Heart Monitor Sticker / Wire Loose</option>
+            <option value="infusion_low">ℹ️ Reminder: Medicine Drip Pump Nearly Empty</option>
+          </select>
+        </div>
+
+        <button class="toolbar-btn btn-trigger" onclick="triggerCustomBedAlert()">
+          ⚡ Trigger Alert on Bed
+        </button>
+      </div>
+
+      <div class="toolbar-section right-controls">
+        <button class="toolbar-btn btn-round" onclick="checkAllStableBeds()" title="Perform routine check on all stable beds">
+          📋 Batch Check All Stable Beds
+        </button>
+
+        <button class="toolbar-btn btn-night" id="btn-night-mode" onclick="toggleNightShiftMode()" title="Toggle night shift non-critical alert silencing">
+          🌙 Night Shift Mode: Off
+        </button>
+
+        <button class="toolbar-btn btn-reset" onclick="resetAllBeds()" title="Reset all beds to normal vitals">
+          ↺ Return All Beds to Good
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ================= DASHBOARD TAB ================= -->
+    <section id="dashboard-view">
+      
+      <!-- Summary Counts Bar (Interactive KPI Tiles) -->
+      <div class="stats-row">
+        <div class="stat-box stat-red" onclick="setFilter('High')" title="Click to filter Critical Alarms">
+          <div class="stat-top-row">
+            <span class="stat-label">High Alarms</span>
+            <span class="stat-icon">🚨</span>
+          </div>
+          <span class="stat-number" id="count-high">1</span>
+          <span class="stat-hint">Immediate bedside action</span>
+        </div>
+
+        <div class="stat-box stat-orange" onclick="setFilter('Medium')" title="Click to filter Warnings">
+          <div class="stat-top-row">
+            <span class="stat-label">Warnings</span>
+            <span class="stat-icon">⚠️</span>
+          </div>
+          <span class="stat-number" id="count-medium">1</span>
+          <span class="stat-hint">Prompt clinical check</span>
+        </div>
+
+        <div class="stat-box stat-blue" onclick="setFilter('Low')" title="Click to filter Sensor Alerts">
+          <div class="stat-top-row">
+            <span class="stat-label">Sensor Alerts</span>
+            <span class="stat-icon">ℹ️</span>
+          </div>
+          <span class="stat-number" id="count-low">1</span>
+          <span class="stat-hint">Routine round inspection</span>
+        </div>
+
+        <div class="stat-box stat-yellow" title="Alarms under active nurse care">
+          <div class="stat-top-row">
+            <span class="stat-label">Acknowledged</span>
+            <span class="stat-icon">🔔</span>
+          </div>
+          <span class="stat-number" id="count-ack">0</span>
+          <span class="stat-hint">Nurse Priya assigned</span>
+        </div>
+
+        <div class="stat-box stat-green" onclick="setFilter('Stable')" title="Click to filter Stable Patients">
+          <div class="stat-top-row">
+            <span class="stat-label">Stable Patients</span>
+            <span class="stat-icon">✓</span>
+          </div>
+          <span class="stat-number" id="count-normal">3</span>
+          <span class="stat-hint">Within target range</span>
+        </div>
+      </div>
+
+      <!-- Active Unit Alerts Feed (Shows All Critical, Warning, and Sensor Alerts) -->
+      <div id="active-alerts-feed" class="active-alerts-feed">
+        <!-- Dynamically rendered by JavaScript -->
+      </div>
+
+      <!-- Smart Triage Focus Filter Bar -->
+      <div class="triage-filter-bar">
+        <span class="filter-label">🔍 Triage Focus:</span>
+        <button class="triage-pill active" onclick="setFilter('ALL')" id="filter-all">
+          All Beds <span class="pill-badge">6</span>
+        </button>
+        <button class="triage-pill pill-red" onclick="setFilter('High')" id="filter-high">
+          🚨 Critical Only <span class="pill-badge" id="pill-count-high">1</span>
+        </button>
+        <button class="triage-pill pill-orange" onclick="setFilter('Medium')" id="filter-medium">
+          ⚠️ Warnings <span class="pill-badge" id="pill-count-medium">1</span>
+        </button>
+        <button class="triage-pill pill-blue" onclick="setFilter('Low')" id="filter-low">
+          ℹ️ Sensor Alerts <span class="pill-badge" id="pill-count-low">1</span>
+        </button>
+        <button class="triage-pill pill-green" onclick="setFilter('Stable')" id="filter-stable">
+          ✓ Stable Patients <span class="pill-badge" id="pill-count-stable">3</span>
+        </button>
+      </div>
+
+      <div class="section-title">
+        <div>
+          <h2>Monitored Patients (6 Beds)</h2>
+          <span class="text-muted">Click any bed card or action button to inspect telemetry vitals & manage alarms</span>
+        </div>
+      </div>
+
+      <!-- Exactly 6 Patient Cards Grid -->
+      <div class="patient-grid" id="patient-grid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- ================= ALARM HISTORY TAB ================= -->
+    <section id="history-view" style="display: none;">
+      <div class="history-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 800; color: #0f172a;">Shift Alarm History Log</h2>
+          <p class="text-muted">Chronological record of all alarms acknowledged or resolved by Nurse Priya</p>
+        </div>
+        <button class="btn-secondary" onclick="showTab('dashboard')">← Back to Dashboard</button>
+      </div>
+
+      <div class="history-card">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Bed</th>
+              <th>Patient</th>
+              <th>Clinical Alarm</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Action By</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body">
+            <!-- Dynamically populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= SIMPLE ALARM DETAILS MODAL ================= -->
+  <div id="alarm-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="modal-bed-chip" id="modal-bed-chip">BED 1</span>
+          <h3 id="modal-bed-name">Rajesh Kumar (Age 64)</h3>
+        </div>
+        <button class="close-btn" onclick="closeModal()" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="modal-content">
+        <!-- Patient Clinical Background -->
+        <div class="modal-section patient-bio-box">
+          <div class="bio-grid">
+            <div><span class="bio-label">Condition:</span> <strong id="modal-diagnosis">Recovering from Heart Surgery</strong></div>
+            <div><span class="bio-label">Doctor in Charge:</span> <strong id="modal-doctor">Dr. Mehta (Heart Specialist)</strong></div>
+            <div><span class="bio-label">Connected Devices:</span> <span id="modal-lines">Oxygen Mask (4L/min), IV Saline Drip</span></div>
+            <div><span class="bio-label">Safe Normal Target:</span> <span id="modal-baseline">Keep Oxygen > 92%, Heart Rate 60-100</span></div>
+          </div>
+        </div>
+
+        <div class="modal-section alert-info-box" id="modal-alert-box">
+          <h4 id="modal-alarm-title">Critical: Oxygen Level Dangerously Low (SpO2 88%)</h4>
+          <p id="modal-alarm-reason">Patient oxygen dropped to 88% (normal is 95-100%). Heart rate spiked to 125 bpm.</p>
+        </div>
+
+        <div class="modal-section">
+          <h4 style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 6px;">
+            Current Vital Signs (Bedside Telemetry):
+          </h4>
+          <div class="modal-vitals-row">
+            <div class="modal-vital-chip">
+              <span class="chip-lbl">HEART RATE</span>
+              <strong id="modal-hr">125 bpm</strong>
+            </div>
+            <div class="modal-vital-chip">
+              <span class="chip-lbl">OXYGEN (SpO2)</span>
+              <strong id="modal-spo2">88%</strong>
+            </div>
+            <div class="modal-vital-chip">
+              <span class="chip-lbl">BLOOD PRESSURE</span>
+              <strong id="modal-bp">70 mmHg</strong>
+            </div>
+            <div class="modal-vital-chip">
+              <span class="chip-lbl">BREATHING</span>
+              <strong id="modal-rr">26 /min</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section guide-box">
+          <h4>💡 What Nurse Priya Should Do:</h4>
+          <ul id="modal-action-guide">
+            <li>1. Check patient breathing and alertness immediately.</li>
+            <li>2. Make sure the oxygen mask is fitted securely.</li>
+            <li>3. Adjust patient head and sitting position.</li>
+          </ul>
+        </div>
+
+        <!-- Nurse Handover / Bedside Action Note with Quick Tags -->
+        <div class="modal-section" style="padding-top: 6px;">
+          <div class="note-header-row">
+            <label for="modal-nurse-note" style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">
+              📝 Nurse Action / Bedside Note:
+            </label>
+            <div class="quick-tags">
+              <span style="font-size: 10px; color: #64748b;">Quick insert:</span>
+              <button type="button" class="btn-quick-tag" onclick="appendNurseNote('Airway & mask checked.')">+ Airway Checked</button>
+              <button type="button" class="btn-quick-tag" onclick="appendNurseNote('Doctor notified.')">+ Doctor Notified</button>
+              <button type="button" class="btn-quick-tag" onclick="appendNurseNote('Position adjusted.')">+ Position Adjusted</button>
+              <button type="button" class="btn-quick-tag" onclick="appendNurseNote('Vitals stabilized.')">+ Vitals Stable</button>
+            </div>
+          </div>
+          <input type="text" id="modal-nurse-note" class="modal-note-input" placeholder="e.g. Oxygen mask adjusted, doctor notified, patient settled..." />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-mute" id="btn-modal-mute" onclick="startProcedureMute()" title="Silences non-critical sensor alerts for 5 minutes during nursing care">
+          ⏱️ 5-Min Quiet Mode (During Care)
+        </button>
+        <button class="btn-secondary" onclick="closeModal()">Close</button>
+        <button class="btn-ack" id="btn-modal-ack" onclick="acknowledgeCurrentAlarm()">🔔 Acknowledge Alarm</button>
+        <button class="btn-resolve" id="btn-modal-resolve" onclick="resolveCurrentAlarm()">✅ Mark as Resolved</button>
+        <button class="btn-check" id="btn-modal-check" onclick="acknowledgeRoutineCheck()" style="display: none;">✓ Acknowledge Bedside Check</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" style="display: none;">Alarm Acknowledged</div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="100%" height="100%">
+  <!-- Paper / Sketch Grid Background -->
+  <rect width="1000" height="650" fill="#fffdf9" />
+  <defs>
+    <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.8" />
+    </pattern>
+  </defs>
+  <rect width="1000" height="650" fill="url(#grid3)" />
+
+  <!-- Header Bar -->
+  <rect x="25" y="15" width="950" height="50" rx="8" fill="#1e293b" />
+  <text x="45" y="45" fill="#ffffff" font-family="'Patrick Hand', cursive, sans-serif" font-size="16" font-weight="bold">
+    Smart ICU | Bedside Care &amp; Acknowledged State
+  </text>
+  <rect x="850" y="24" width="110" height="30" rx="15" fill="#334155" />
+  <text x="865" y="44" fill="#ffffff" font-family="'Patrick Hand', cursive, sans-serif" font-size="12">← Dashboard</text>
+
+  <!-- Live Toast Notification Banner -->
+  <g transform="translate(25, 78)">
+    <rect width="950" height="42" rx="21" fill="#1e293b" />
+    <circle cx="25" cy="21" r="10" fill="#f59e0b" />
+    <text x="21" y="25" fill="#ffffff" font-size="12">🔔</text>
+    <text x="45" y="26" fill="#ffffff" font-family="'Patrick Hand', cursive, sans-serif" font-size="14" font-weight="bold">
+      Bed 1 Alarm Acknowledged — Nurse Priya assigned at bedside. Non-critical audio suppressed.
+    </text>
+  </g>
+
+  <!-- Patient In-Care Card -->
+  <g transform="translate(25, 135)">
+    <rect width="950" height="110" rx="10" fill="#fffdf7" stroke="#ca8a04" stroke-width="2.2" />
+    <text x="20" y="32" fill="#0f172a" font-family="'Architects Daughter', cursive, sans-serif" font-size="18" font-weight="bold">
+      BED 1: Rajesh Kumar (Age 64) — In-Progress Bedside Care
+    </text>
+    <rect x="490" y="14" width="135" height="24" rx="4" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.2" />
+    <text x="502" y="30" fill="#854d0e" font-family="'Patrick Hand', cursive, sans-serif" font-size="11" font-weight="bold">ACKNOWLEDGED 🔔</text>
+    
+    <text x="20" y="60" fill="#475569" font-family="'Patrick Hand', cursive, sans-serif" font-size="12.5">
+      Condition: Post Heart Surgery • Primary Doctor: Dr. Mehta • Assigned Nurse: <strong>Nurse Priya</strong>
+    </text>
+    <text x="20" y="82" fill="#64748b" font-family="'Patrick Hand', cursive, sans-serif" font-size="12">
+      Bedside Action Note: <em>"Mask repositioned securely; patient seated upright. Vitals stabilizing."</em>
+    </text>
+  </g>
+
+  <!-- Split Sections: Recovering Vitals & 5-Min Quiet Mode -->
+  <g transform="translate(25, 260)">
+    <!-- Left Box: Recovering Telemetry with Single-Number BP -->
+    <rect width="570" height="340" rx="10" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+    <text x="20" y="30" fill="#0f172a" font-family="'Architects Daughter', cursive, sans-serif" font-size="15" font-weight="bold">
+      Real-Time Telemetry Recovery (Post-Intervention):
+    </text>
+
+    <!-- 4 Vitals Box -->
+    <g transform="translate(20, 50)">
+      <!-- HR -->
+      <rect x="0" y="0" width="120" height="80" rx="6" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="60" y="24" text-anchor="middle" fill="#64748b" font-size="10" font-weight="bold">HEART RATE</text>
+      <text x="60" y="52" text-anchor="middle" fill="#d97706" font-family="'Architects Daughter'" font-size="22" font-weight="bold">110</text>
+      <text x="60" y="68" text-anchor="middle" fill="#94a3b8" font-size="9.5">bpm (dropping ↓)</text>
+
+      <!-- O2 -->
+      <rect x="135" y="0" width="120" height="80" rx="6" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="195" y="24" text-anchor="middle" fill="#64748b" font-size="10" font-weight="bold">OXYGEN</text>
+      <text x="195" y="52" text-anchor="middle" fill="#d97706" font-family="'Architects Daughter'" font-size="22" font-weight="bold">92%</text>
+      <text x="195" y="68" text-anchor="middle" fill="#94a3b8" font-size="9.5">sat (rising ↑)</text>
+
+      <!-- BP (Single Number 78 mmHg) -->
+      <rect x="270" y="0" width="120" height="80" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+      <text x="330" y="24" text-anchor="middle" fill="#64748b" font-size="10" font-weight="bold">PRESSURE (MAP)</text>
+      <text x="330" y="52" text-anchor="middle" fill="#0f172a" font-family="'Architects Daughter'" font-size="22" font-weight="bold">78</text>
+      <text x="330" y="68" text-anchor="middle" fill="#94a3b8" font-size="9.5">mmHg</text>
+
+      <!-- Resp -->
+      <rect x="405" y="0" width="120" height="80" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+      <text x="465" y="24" text-anchor="middle" fill="#64748b" font-size="10" font-weight="bold">BREATHING</text>
+      <text x="465" y="52" text-anchor="middle" fill="#0f172a" font-family="'Architects Daughter'" font-size="22" font-weight="bold">22</text>
+      <text x="465" y="68" text-anchor="middle" fill="#94a3b8" font-size="9.5">/min</text>
+    </g>
+
+    <!-- Trend Graph Sketch -->
+    <g transform="translate(20, 150)">
+      <text x="0" y="0" fill="#475569" font-family="'Patrick Hand', cursive, sans-serif" font-size="12" font-weight="bold">
+        Oxygen Saturation Trend (Recovery Curve):
+      </text>
+      <rect x="0" y="10" width="530" height="90" rx="4" fill="#0f172a" />
+      <path d="M 10 75 Q 80 80 150 78 Q 230 75 300 55 Q 380 40 450 30 L 520 28" fill="none" stroke="#38bdf8" stroke-width="3" />
+      <text x="20" y="85" fill="#ef4444" font-family="monospace" font-size="10">88% (Alarm)</text>
+      <text x="240" y="68" fill="#f59e0b" font-family="monospace" font-size="10">90% (Ack)</text>
+      <text x="460" y="22" fill="#22c55e" font-family="monospace" font-size="10">92% (Recovering)</text>
+    </g>
+
+    <!-- Mark Resolved Final Action -->
+    <g transform="translate(20, 270)">
+      <rect x="0" y="0" width="530" height="45" rx="6" fill="#10b981" />
+      <text x="180" y="28" fill="#ffffff" font-family="'Patrick Hand', cursive, sans-serif" font-size="15" font-weight="bold">
+        ✅ Mark as Resolved (Patient Safe)
+      </text>
+    </g>
+
+    <!-- Right Box: 5-Min Quiet Mode Overlay -->
+    <g transform="translate(595, 0)">
+      <rect width="355" height="340" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2" />
+      <text x="20" y="30" fill="#312e81" font-family="'Architects Daughter', cursive, sans-serif" font-size="15" font-weight="bold">
+        ⏱️ Procedure Quiet Mode Active
+      </text>
+      
+      <g transform="translate(20, 48)">
+        <rect width="315" height="65" rx="6" fill="#ffffff" stroke="#c7d2fe" />
+        <text x="158" y="44" text-anchor="middle" fill="#4338ca" font-family="'Architects Daughter'" font-size="32" font-weight="bold">
+          04:15
+        </text>
+      </g>
+
+      <text x="20" y="145" fill="#3730a3" font-family="'Patrick Hand', cursive, sans-serif" font-size="13" font-weight="bold">
+        How Quiet Mode Prevents Alarm Fatigue:
+      </text>
+      <text x="20" y="170" fill="#4338ca" font-family="'Patrick Hand', cursive, sans-serif" font-size="12">
+        • Non-critical sensor beeps silenced while nurse adjusts lines.
+      </text>
+      <text x="20" y="195" fill="#4338ca" font-family="'Patrick Hand', cursive, sans-serif" font-size="12">
+        • Patient rests without loud buzzer stress.
+      </text>
+      <text x="20" y="220" fill="#4338ca" font-family="'Patrick Hand', cursive, sans-serif" font-size="12">
+        • Critical life-threat alarms remain 100% active.
+      </text>
+
+      <rect x="20" y="260" width="315" height="40" rx="6" fill="#ffffff" stroke="#6366f1" stroke-width="1.5" />
+      <text x="110" y="285" fill="#4338ca" font-family="'Patrick Hand', cursive, sans-serif" font-size="13" font-weight="bold">
+        Cancel Quiet Mode ✕
+      </text>
+    </g>
+  </g>
+</svg>

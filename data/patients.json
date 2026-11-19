@@ -1,0 +1,159 @@
+[
+  {
+    "id": "P-101",
+    "bed": "Bed 01",
+    "name": "Simulated Patient A",
+    "age": 64,
+    "gender": "Male",
+    "admissionReason": "Post-CABG Recovery",
+    "status": "Critical",
+    "vitals": {
+      "hr": 128,
+      "hrTrend": "increasing",
+      "spo2": 88,
+      "spo2Trend": "decreasing",
+      "bp": "85/55",
+      "map": 65,
+      "rr": 26,
+      "temp": 38.2
+    },
+    "sensors": {
+      "ecg": "Connected",
+      "spo2Probe": "Signal Low Quality",
+      "artLine": "Connected",
+      "respBelt": "Connected"
+    },
+    "assignedNurse": "Nurse P. Sharma (RN)"
+  },
+  {
+    "id": "P-102",
+    "bed": "Bed 02",
+    "name": "Simulated Patient B",
+    "age": 52,
+    "gender": "Female",
+    "admissionReason": "Acute Respiratory Distress (ARDS)",
+    "status": "Warning",
+    "vitals": {
+      "hr": 92,
+      "hrTrend": "stable",
+      "spo2": 91,
+      "spo2Trend": "stable",
+      "bp": "118/76",
+      "map": 90,
+      "rr": 22,
+      "temp": 37.1
+    },
+    "sensors": {
+      "ecg": "Connected",
+      "spo2Probe": "Connected",
+      "artLine": "N/A",
+      "respBelt": "Connected"
+    },
+    "assignedNurse": "Nurse P. Sharma (RN)"
+  },
+  {
+    "id": "P-103",
+    "bed": "Bed 03",
+    "name": "Simulated Patient C",
+    "age": 71,
+    "gender": "Male",
+    "admissionReason": "Severe Sepsis / Septic Shock",
+    "status": "Stable",
+    "vitals": {
+      "hr": 78,
+      "hrTrend": "stable",
+      "spo2": 97,
+      "spo2Trend": "stable",
+      "bp": "112/68",
+      "map": 82,
+      "rr": 16,
+      "temp": 36.9
+    },
+    "sensors": {
+      "ecg": "Connected",
+      "spo2Probe": "Connected",
+      "artLine": "Connected",
+      "respBelt": "Connected"
+    },
+    "assignedNurse": "Nurse R. Verma (RN)"
+  },
+  {
+    "id": "P-104",
+    "bed": "Bed 04",
+    "name": "Simulated Patient D",
+    "age": 45,
+    "gender": "Female",
+    "admissionReason": "Traumatic Brain Injury (Observation)",
+    "status": "Advisory",
+    "vitals": {
+      "hr": 64,
+      "hrTrend": "stable",
+      "spo2": 99,
+      "spo2Trend": "stable",
+      "bp": "130/82",
+      "map": 98,
+      "rr": 14,
+      "temp": 36.8
+    },
+    "sensors": {
+      "ecg": "Loose Electrode (V4)",
+      "spo2Probe": "Connected",
+      "artLine": "Connected",
+      "respBelt": "Connected"
+    },
+    "assignedNurse": "Nurse R. Verma (RN)"
+  },
+  {
+    "id": "P-105",
+    "bed": "Bed 05",
+    "name": "Simulated Patient E",
+    "age": 59,
+    "gender": "Male",
+    "admissionReason": "Congestive Heart Failure Exacerbation",
+    "status": "Stable",
+    "vitals": {
+      "hr": 72,
+      "hrTrend": "stable",
+      "spo2": 96,
+      "spo2Trend": "stable",
+      "bp": "124/78",
+      "map": 93,
+      "rr": 18,
+      "temp": 37.0
+    },
+    "sensors": {
+      "ecg": "Connected",
+      "spo2Probe": "Connected",
+      "artLine": "N/A",
+      "respBelt": "Connected"
+    },
+    "assignedNurse": "Nurse P. Sharma (RN)"
+  },
+  {
+    "id": "P-106",
+    "bed": "Bed 06",
+    "name": "Simulated Patient F",
+    "age": 38,
+    "gender": "Female",
+    "admissionReason": "Post-Op Spinal Surgery",
+    "status": "Stable",
+    "vitals": {
+      "hr": 68,
+      "hrTrend": "stable",
+      "spo2": 98,
+      "spo2Trend": "stable",
+      "bp": "115/72",
+      "map": 86,
+      "rr": 15,
+      "temp": 36.7
+    },
+    "sensors": {
+      "ecg": "Connected",
+      "spo2Probe": "Connected",
+      "artLine": "N/A",
+      "respBelt": "Connected"
+    },
+    "assignedNurse": "Nurse R. Verma (RN)"
+  }
+]
+
