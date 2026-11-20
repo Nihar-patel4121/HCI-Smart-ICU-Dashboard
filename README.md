@@ -27,7 +27,7 @@ The **Smart ICU Alarm Fatigue Management Dashboard** is a bedside and central te
 | Week | Official Syllabus Milestone | Project Deliverable Produced | Key File Reference |
 |---|---|---|---|
 | **Week 1** | Understand Your Users (Needfinding) | Contextual inquiry summary, Empathy map, 2 Nursing personas (Senior Nurse Priya, Junior Nurse Rahul), One-page problem definition. | [`docs/week1-needfinding.md`](file:///c:/Users/HP/Desktop/HCI_Project/docs/week1-needfinding.md) |
-| **Week 2** | Build & Test a Paper Prototype | 5 primary user goals, complete screen-flow architecture, wireframes, comic storyboard, printable physical paper/cardboard kit, 3-participant testing observations. | [`docs/week2-paper-prototype.md`](file:///c:/Users/HP/Desktop/HCI_Project/docs/week2-paper-prototype.md)<br>[`paper-prototype/printable-screens/`](file:///c:/Users/HP/Desktop/HCI_Project/paper-prototype/printable-screens/printable_paper_prototype.html) |
+| **Week 2** | Build & Test a Paper Prototype | 5 primary user goals, complete screen-flow architecture, wireframes, comic storyboard, and user testing observations. | [`docs/week2-paper-prototype.md`](file:///c:/Users/HP/Desktop/HCI_Project/docs/week2-paper-prototype.md) |
 | **Weeks 3–4** | Build the Proof of Concept (PoC) | Responsive, zero-dependency Web Application (HTML5/CSS3/Vanilla JS) with live multi-bed telemetry, priority ranking, context drawer, tri-state lifecycle, and audio tone synthesis. | [`prototype/index.html`](file:///c:/Users/HP/Desktop/HCI_Project/prototype/index.html)<br>[`docs/week3-4-poc.md`](file:///c:/Users/HP/Desktop/HCI_Project/docs/week3-4-poc.md) |
 | **Weeks 5–6** | Usability Evaluation | Empirical testing across 5 benchmark tasks (mean TTT 1.93s, 100% completion), step-by-step cognitive walkthrough, Nielsen's 10 heuristic evaluation, and peer review template. | [`docs/week5-6-evaluation.md`](file:///c:/Users/HP/Desktop/HCI_Project/docs/week5-6-evaluation.md)<br>[`evaluation/`](file:///c:/Users/HP/Desktop/HCI_Project/evaluation/) |
 | **Week 7** | Final Showcase | Complete 15-slide PowerPoint deck with speaker notes, step-by-step live viva demonstration script, and reproducible submission artifacts. | [`presentation/final-presentation.pptx`](file:///c:/Users/HP/Desktop/HCI_Project/presentation/final-presentation.pptx)<br>[`docs/final-showcase.md`](file:///c:/Users/HP/Desktop/HCI_Project/docs/final-showcase.md) |
@@ -67,17 +67,6 @@ c:\Users\HP\Desktop\HCI_Project\
 │   ├── patients.json                  # 6 Monitored beds with baseline vitals
 │   └── alarms.json                    # Deterministic alarm events & context
 │
-├── paper-prototype/                   # Physical Prototype Artifacts
-│   ├── screen-wireframes/             # Hand-drawn style SVG wireframes (Screens 1 to 4)
-│   │   ├── screen1_dashboard.svg      # Central dashboard (3-bed representation)
-│   │   ├── screen2_alarm_details.svg  # Bedside inspection modal popup
-│   │   ├── screen3_patient_focus.svg  # Acknowledged care & quiet mode
-│   │   └── screen4_alarm_history.svg  # Shift alarm history table
-│   ├── storyboard/
-│   │   └── storyboard_narrative.md    # Storyboard scene breakdown
-│   └── printable-screens/
-│       └── printable_paper_prototype.html # A4 printable hand-drawn sketch sheets
-│
 ├── evaluation/                        # Evaluation Forms & Testing Sheets
 │   ├── expert-physician-feedback.md   # Doctor review transcript & design response
 │   ├── usability-test-template.md     # Standardized participant observation sheet
@@ -90,12 +79,11 @@ c:\Users\HP\Desktop\HCI_Project\
 │   └── generate_deck.py               # Automated slide deck build script
 │
 └── screenshots/                       # High-Resolution UI Captures
-    ├── screen1_dashboard.png
-    ├── screen2_alarm_details_modal.png
-    ├── screen3_resolution_dialog.png
-    ├── screen4_alarm_history.png
-    ├── screen5_patient_focused_view.png
-    └── screen6_printable_paper_prototype.png
+    ├── screen1_dashboard.png          # Main Triage Dashboard with 3-tier alert feed
+    ├── screen2_alarm_details_modal.png# Bedside Alarm Inspection Modal
+    ├── screen3_resolution_dialog.png  # Alarm Resolution Confirmation Dialog
+    ├── screen4_alarm_history.png      # Shift Alarm History Log table
+    └── screen5_patient_focused_view.png# Focused Patient Telemetry View
 ```
 
 ---
@@ -176,15 +164,14 @@ When presenting the project to examiners or evaluators, follow this exact 5-minu
 
 ---
 
-## 6. How to Prepare the Physical Paper & Cardboard Prototype
+## 6. User Interface Architecture & Key Views
 
-To prepare Deliverable 1 for the Week 7 showcase:
-1. Open [`paper-prototype/printable-screens/printable_paper_prototype.html`](file:///c:/Users/HP\Desktop\HCI_Project\paper-prototype\printable-screens\printable_paper_prototype.html) in your browser.
-2. Press **`Ctrl + P`** (Print).
-3. Set layout to **A4 Landscape** and print the 2 sheets on sturdy cardstock paper.
-4. Sheet 1 forms the base cardboard screen. Glue it onto an A4 piece of cardboard.
-5. Sheet 2 contains the sliding Context Drawer and status stickers. Cut along the red dashed lines.
-6. Tape two paper rails to the right edge of the cardboard base so the Context Drawer can slide in and out smoothly during your demonstration.
+The dashboard provides 5 core interactive interfaces:
+1. **Central Triage Dashboard ([screen1_dashboard.png](screenshots/screen1_dashboard.png))**: Displays live station clock, 5 KPI counters, 3-tier active alerts feed (Critical, Warning, Sensor), and 6 patient bed cards with single-number Mean Arterial Pressure.
+2. **Bedside Alarm Inspection Modal ([screen2_alarm_details_modal.png](screenshots/screen2_alarm_details_modal.png))**: Displays clinical condition, telemetry vitals, action protocol, quick-insert nurse notes, 5-min quiet mode, and acknowledge/resolve actions.
+3. **Alarm Resolution Dialog ([screen3_resolution_dialog.png](screenshots/screen3_resolution_dialog.png))**: Confirmation workflow to prevent accidental slip dismissals and record resolution reasons.
+4. **Shift Alarm History Log ([screen4_alarm_history.png](screenshots/screen4_alarm_history.png))**: Chronological audit trail of all nurse actions, timestamps, and bedside notes.
+5. **Focused Patient Telemetry View ([screen5_patient_focused_view.png](screenshots/screen5_patient_focused_view.png))**: High-density physiological trend monitoring.
 
 ---
 
@@ -224,5 +211,5 @@ This project includes a root `index.html` allowing 1-click zero-configuration li
 ## 9. Academic Authorship & Submission Verification
 - **Course**: Human-Computer Interaction (HCI)
 - **Project Title**: Smart ICU Alarm Fatigue Management Dashboard
-- **Deliverables**: Paper Prototype Kit, Working Proof of Concept Web App, Usability Evaluation Portfolio, Physician Review, and Final Presentation Slide Deck.
+- **Deliverables**: Working Proof of Concept Web App, Usability Evaluation Portfolio, Physician Review, and Final Presentation Slide Deck.
 

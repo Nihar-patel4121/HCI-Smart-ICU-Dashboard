@@ -13,8 +13,7 @@ screens = [
     ('screen2_alarm_details_modal.png', BASE_URL + '#modal-ALM-2026-001'),
     ('screen3_resolution_dialog.png', BASE_URL + '#resolve-ALM-2026-001'),
     ('screen4_alarm_history.png', BASE_URL + '#history'),
-    ('screen5_patient_focused_view.png', BASE_URL + '#patient-P-101'),
-    ('screen6_printable_paper_prototype.png', r'file:///C:/Users/HP/Desktop/HCI_Project/paper-prototype/printable-screens/printable_paper_prototype.html')
+    ('screen5_patient_focused_view.png', BASE_URL + '#patient-P-101')
 ]
 
 for name, url in screens:
